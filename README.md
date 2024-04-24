@@ -1,6 +1,7 @@
 # portfolio_me
 
-A new Flutter project.
+![GitHub Code Size](https://img.shields.io/github/languages/code-size/luongdong059/portfolio_me)
+
 
 ## Getting Started
 
