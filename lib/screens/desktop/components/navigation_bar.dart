@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_me/constants/app_contents.dart';
 import 'package:portfolio_me/constants/assets_constants.dart';
+import 'package:portfolio_me/constants/global_keys.dart';
 import 'package:portfolio_me/themes/app_colors.dart';
 
 class DesktopNavBar extends StatefulWidget {
@@ -14,7 +15,7 @@ class _DesktopNavBarState extends State<DesktopNavBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+      padding: const EdgeInsets.fromLTRB(0, 21, 0, 0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -27,7 +28,13 @@ class _DesktopNavBarState extends State<DesktopNavBar> {
           Spacer(),
           NavItem(
             title: AppContents.navAbout,
-            onPress: () {},
+            onPress: () {
+
+              Scrollable.ensureVisible(
+                GlobalKeys.aboutKey.currentContext!,
+                duration: const Duration(milliseconds: 1000),
+              );
+            },
           ),
           NavItem(
             title: AppContents.navExperience,
@@ -62,19 +69,20 @@ class NavItem extends StatelessWidget {
   });
 
   final String title;
-  final VoidCallback onPress;
+  final Function() onPress;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Scrollable.ensureVisible(context);
-      },
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 0),
-        child: Text(
-          title,
-          style: Theme.of(context).textTheme.bodyMedium,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: onPress,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 0),
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
         ),
       ),
     );

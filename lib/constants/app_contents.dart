@@ -8,7 +8,22 @@ class AppContents {
   static const String downloadCV = 'Download CV';
 
 
-  static const String about01 = 'Hi, I\'m Dong';
-  static const String about02 = 'I\'m a full stack developer (React.js & Node.js) with a focus on creating (and occasionally designing) exceptional digital experiences that are fast, accessible, visually appealing, and responsive. Even though I have been creating web applications for over 7 years, I still love it as if it was something new.';
+  static const String address = 'Tan Binh District, Ho Chi Minh City';
+  static const String status = 'Available for new projects';
 
+  static const String hero01 = 'Hi, I\'m Dong';
+  static const String hero02 =
+      'I\'m a Flutter developer with a focus on creating (and occasionally designing) exceptional digital experiences that are fast, accessible, visually appealing, and responsive. Even though I have been creating mobile applications for over 2 years, I still love it as if it was something new.';
+  static const String aboutMe = 'About Me';
+  static const String about01 = 'I\'m a passionate, self-proclaimed designer who specializes in Flutter development. I am very enthusiastic about bringing the technical and visual aspects of digital products to life. User experience, pixel perfect design, and writing clear, readable, highly performant code matters to me.';
+  static const String about02 = 'I began my journey as a web developer in 2019, and since then, I\'ve continued to grow and evolve as a developer, taking on new challenges and learning the latest technologies along the way. Now, in my early twenties, 2 years after starting my mobile development journey, I\'m building cutting-edge mobile applications using modern technologies such as Flutter and much more.';
+  static const String about03 = 'I am very much a progressive thinker and enjoy working on products end to end, from ideation all the way to development.';
+  static const String about04 = 'When I\'m not in full-on developer mode, you can find me hovering around on twitter or on indie hacker, witnessing the journey of early startups or enjoying some free time. You can follow me on Twitter where I share tech-related bites and build in public, or you can follow me on GitHub.';
+  static const String about05 = 'Finally, some quick bits about me.';
+  static const String about06 = 'One last thing, I\'m available for freelance work, so feel free to reach out and say hello! I promise I don\'t bite';
+
+  static const String experience = 'Experience';
+  static const String experienceDetail = 'Here is a quick summary of my most recent experiences:';
+
+  static const String btnBacktoTop = 'Back to Top';
 }

@@ -17,7 +17,7 @@ class Portfolio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(1440, 962),
+      designSize: Responsive.isMobile() ?  const Size(350, 667):const Size(1440, 962),
       builder: ((context, child) {
         {
           return MaterialApp(

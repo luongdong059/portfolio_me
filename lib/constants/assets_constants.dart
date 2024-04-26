@@ -8,8 +8,14 @@ class Assets {
   static const String fontPoppinsRegular = 'assets/font/Poppins-Regular.ttf';
   static const String fontPoppinsSemiBold = 'assets/font/Poppins-SemiBold.ttf';
   static const String fontPoppinsThin = 'assets/font/Poppins-Thin.ttf';
+  static const String iconsAddress = 'assets/icons/address.png';
   static const String iconsFavicon = 'assets/icons/favicon.png';
+  static const String iconsFigma = 'assets/icons/figma.png';
+  static const String iconsGithub = 'assets/icons/github.png';
   static const String iconsSign = 'assets/icons/sign.png';
+  static const String iconsTwitter = 'assets/icons/twitter.png';
   static const String imagesLogo = 'assets/images/logo.png';
+  static const String imagesPersonal = 'assets/images/personal.JPG';
+  static const String imagesPersonal1 = 'assets/images/personal1.JPG';
 
 }
