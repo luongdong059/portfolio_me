@@ -44,6 +44,12 @@ class AppContents {
   static const String experienceSITTime = 'Mar 2023 - Now';
   static const String experienceSITDetail = 'Develop mobile applications using Flutter.\nDesign UI/UX application interface';
 
+
+  static const String contact = 'Contact';
+  static const String contactDetail = 'What’s next? Feel free to reach out to me if you\'re looking for a developer, have a query, or simply want to connect.';
+  static const String contactEmail = 'luongdong059@gmail.com';
+  static const String contactPhoneNum = '+84 356279580';
+  static const String contact01 = 'You may also find me on these platforms!';
   // Button
   static const String btnBacktoTop = 'Back to Top';
 }

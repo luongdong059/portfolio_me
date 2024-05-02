@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio_me/constants/app_contents.dart';
 import 'package:portfolio_me/constants/assets_constants.dart';
 import 'package:portfolio_me/constants/global_keys.dart';
+import 'package:portfolio_me/screens/desktop/components/experience_item.dart';
 import 'package:portfolio_me/screens/desktop/components/navigation_bar.dart';
 import 'package:portfolio_me/screens/desktop/components/page_tag.dart';
 import 'package:portfolio_me/screens/desktop/components/skill_item.dart';
@@ -66,6 +68,7 @@ class _DesktopPageState extends State<DesktopPage> {
               About(),
               Skill(),
               Experience(),
+              Contact()
             ],
           ),
         ),
@@ -385,75 +388,95 @@ class Experience extends StatelessWidget {
   }
 }
 
-class ExperienceItem extends StatelessWidget {
-  const ExperienceItem({
-    super.key,
-    required this.image,
-    required this.company,
-    required this.date,
-    required this.content,
-  });
-
-  final String image;
-  final String company;
-  final String date;
-  final String content;
+class Contact extends StatelessWidget {
+  const Contact({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 288,
-      width: MediaQuery.sizeOf(context).width / 2,
-      padding: const EdgeInsets.all(32),
-      decoration: BoxDecoration(
-        color: AppColors.backgroundColor,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
-          BoxShadow(
-              blurRadius: 3,
-              spreadRadius: 0.3,
-              color: AppColors.componentColor,
-              offset: Offset(0, 0)),
-        ],
-      ),
-      child: Row(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 96, top: 96),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            image,
-            width: 200,
+          PageTag(
+            key: GlobalKeys.contactKey,
+            title: AppContents.contact,
           ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      company,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(fontWeight: FontWeight.bold),
+          Text(AppContents.contactDetail,
+              style: Theme.of(context).textTheme.bodySmall),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                Assets.iconsIconEmail,
+                width: 24,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Text(AppContents.contactEmail,
+                    style: Theme.of(context).textTheme.titleMedium),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Clipboard.setData(
+                    ClipboardData(text: AppContents.contactEmail),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Copied'),
                     ),
-                    Spacer(),
-                    Text(date, style: Theme.of(context).textTheme.bodyMedium),
-                  ],
+                  );
+                },
+                child: Image.asset(
+                  Assets.iconsIconCopy,
+                  width: 24,
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Expanded(
-                  child: Text(
-                    content,
-                    style: Theme.of(context).textTheme.bodySmall,
-                    maxLines: 7,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                Assets.iconsIconPhone,
+                width: 24,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Text(AppContents.contactPhoneNum,
+                    style: Theme.of(context).textTheme.titleMedium),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Clipboard.setData(
+                    ClipboardData(text: AppContents.contactPhoneNum),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Copied'),
+                    ),
+                  );
+                },
+                child: Image.asset(
+                  Assets.iconsIconCopy,
+                  width: 24,
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+            child: Text(AppContents.contact01,
+                style: Theme.of(context).textTheme.bodySmall),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SocialItem(onTap: () {}, icon: Assets.iconsGithub),
+              SocialItem(onTap: () {}, icon: Assets.iconsTwitter),
+              SocialItem(onTap: () {}, icon: Assets.iconsFigma),
+            ],
+          )
         ],
       ),
     );

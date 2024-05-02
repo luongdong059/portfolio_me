@@ -13,8 +13,11 @@ class Assets {
   static const String iconsFigma = 'assets/icons/figma.png';
   static const String iconsGit = 'assets/icons/git.png';
   static const String iconsGithub = 'assets/icons/github.png';
+  static const String iconsIconCopy = 'assets/icons/icon-copy.png';
+  static const String iconsIconEmail = 'assets/icons/icon-email.png';
   static const String iconsIconFigma = 'assets/icons/icon-figma.webp';
   static const String iconsIconFlutter = 'assets/icons/icon-flutter.png';
+  static const String iconsIconPhone = 'assets/icons/icon-phone.png';
   static const String iconsSign = 'assets/icons/sign.png';
   static const String iconsTwitter = 'assets/icons/twitter.png';
   static const String imagesLogo = 'assets/images/logo.png';
