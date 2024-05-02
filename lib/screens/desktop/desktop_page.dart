@@ -5,6 +5,7 @@ import 'package:portfolio_me/constants/assets_constants.dart';
 import 'package:portfolio_me/constants/global_keys.dart';
 import 'package:portfolio_me/screens/desktop/components/navigation_bar.dart';
 import 'package:portfolio_me/screens/desktop/components/page_tag.dart';
+import 'package:portfolio_me/screens/desktop/components/skill_item.dart';
 import 'package:portfolio_me/screens/desktop/components/social_item.dart';
 import 'package:portfolio_me/themes/app_colors.dart';
 
@@ -54,16 +55,19 @@ class _DesktopPageState extends State<DesktopPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: ListView(
+        body: SingleChildScrollView(
           controller: _scrollController,
           physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.fromLTRB(115, 0, 115, 0),
-          children: const [
-            DesktopNavBar(),
-            Heros(),
-            About(),
-            Experience(),
-          ],
+          child: Column(
+            children: [
+              DesktopNavBar(),
+              Heros(),
+              About(),
+              Skill(),
+              Experience(),
+            ],
+          ),
         ),
         floatingActionButton: _showBackToTopButton
             ? ElevatedButton(
@@ -208,10 +212,10 @@ class About extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 96, bottom: 96),
       child: Column(
-        key: GlobalKeys.aboutKey,
         children: [
-          const PageTag(
+          PageTag(
             title: AppContents.aboutMe,
+            key: GlobalKeys.aboutKey,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -299,6 +303,48 @@ class About extends StatelessWidget {
   }
 }
 
+class Skill extends StatelessWidget {
+  const Skill({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 96, top: 96),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          PageTag(
+            title: AppContents.skill,
+          ),
+          Text(AppContents.skill01,
+              style: Theme.of(context).textTheme.bodySmall),
+          const Padding(
+            padding: EdgeInsets.only(top: 48.0),
+            child: Center(
+                child: Wrap(
+              spacing: 32,
+              children: [
+                SkillItem(
+                  icon: Assets.iconsIconFigma,
+                  title: AppContents.figma,
+                ),
+                SkillItem(
+                  icon: Assets.iconsGit,
+                  title: AppContents.git,
+                ),
+                SkillItem(
+                  icon: Assets.iconsIconFlutter,
+                  title: AppContents.flutter,
+                ),
+              ],
+            )),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class Experience extends StatelessWidget {
   const Experience({super.key});
 
@@ -307,13 +353,107 @@ class Experience extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 96, top: 96),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const PageTag(
+          PageTag(
+            key: GlobalKeys.experienceKey,
             title: AppContents.experience,
           ),
           Text(AppContents.experienceDetail,
-              style: Theme.of(context).textTheme.bodySmall)
+              style: Theme.of(context).textTheme.bodySmall),
+          const SizedBox(
+            height: 48,
+          ),
+          const ExperienceItem(
+            image: Assets.imagesWellcareLogo,
+            company: AppContents.experienceWellcare,
+            date: AppContents.experienceWellcareTime,
+            content: AppContents.experienceWellcareDetail,
+          ),
+          const SizedBox(
+            height: 48,
+          ),
+          const ExperienceItem(
+            image: Assets.imagesSmartinnotechLogo,
+            company: AppContents.experienceSIT,
+            date: AppContents.experienceSITTime,
+            content: AppContents.experienceSITDetail,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ExperienceItem extends StatelessWidget {
+  const ExperienceItem({
+    super.key,
+    required this.image,
+    required this.company,
+    required this.date,
+    required this.content,
+  });
+
+  final String image;
+  final String company;
+  final String date;
+  final String content;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 288,
+      width: MediaQuery.sizeOf(context).width / 2,
+      padding: const EdgeInsets.all(32),
+      decoration: BoxDecoration(
+        color: AppColors.backgroundColor,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: const [
+          BoxShadow(
+              blurRadius: 3,
+              spreadRadius: 0.3,
+              color: AppColors.componentColor,
+              offset: Offset(0, 0)),
+        ],
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            image,
+            width: 200,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      company,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    Spacer(),
+                    Text(date, style: Theme.of(context).textTheme.bodyMedium),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Expanded(
+                  child: Text(
+                    content,
+                    style: Theme.of(context).textTheme.bodySmall,
+                    maxLines: 7,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

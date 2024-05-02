@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_me/constants/app_contents.dart';
 import 'package:portfolio_me/constants/assets_constants.dart';
 import 'package:portfolio_me/constants/global_keys.dart';
-import 'package:portfolio_me/themes/app_colors.dart';
 
 class DesktopNavBar extends StatefulWidget {
   const DesktopNavBar({super.key});
@@ -29,7 +28,6 @@ class _DesktopNavBarState extends State<DesktopNavBar> {
           NavItem(
             title: AppContents.navAbout,
             onPress: () {
-
               Scrollable.ensureVisible(
                 GlobalKeys.aboutKey.currentContext!,
                 duration: const Duration(milliseconds: 1000),
@@ -38,15 +36,21 @@ class _DesktopNavBarState extends State<DesktopNavBar> {
           ),
           NavItem(
             title: AppContents.navExperience,
-            onPress: () {},
-          ),
-          NavItem(
-            title: AppContents.navWork,
-            onPress: () {},
+            onPress: () {
+              Scrollable.ensureVisible(
+                GlobalKeys.experienceKey.currentContext!,
+                duration: const Duration(milliseconds: 1000),
+              );
+            },
           ),
           NavItem(
             title: AppContents.navContact,
-            onPress: () {},
+            onPress: () {
+              Scrollable.ensureVisible(
+                GlobalKeys.contactKey.currentContext!,
+                duration: const Duration(milliseconds: 1000),
+              );
+            },
           ),
           ElevatedButton(
             onPressed: () {},
