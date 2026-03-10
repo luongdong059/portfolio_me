@@ -17,10 +17,43 @@ class ExperienceItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.sizeOf(context).width;
+    bool isWideScreen = screenWidth > 900;
+
+    Widget contentColumn = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          alignment: WrapAlignment.spaceBetween,
+          children: [
+            Text(
+              company,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontWeight: FontWeight.bold),
+            ),
+            if (isWideScreen) const SizedBox(width: 16),
+            Text(date, style: Theme.of(context).textTheme.bodyMedium),
+          ],
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Text(
+          content,
+          style: Theme.of(context).textTheme.bodySmall,
+          maxLines: 7,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ],
+    );
+
     return Container(
-      height: 288,
-      width: MediaQuery.sizeOf(context).width / 2,
-      padding: const EdgeInsets.all(32),
+      width: isWideScreen ? screenWidth / 2 : double.infinity,
+      padding: EdgeInsets.all(isWideScreen ? 32 : 24),
       decoration: BoxDecoration(
         color: AppColors.backgroundColor,
         borderRadius: BorderRadius.circular(12),
@@ -32,44 +65,16 @@ class ExperienceItem extends StatelessWidget {
               offset: Offset(0, 0)),
         ],
       ),
-      child: Row(
+      child: Flex(
+        direction: isWideScreen ? Axis.horizontal : Axis.vertical,
+        crossAxisAlignment: isWideScreen ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
           Image.asset(
             image,
-            width: 200,
+            width: isWideScreen ? 200 : 160,
           ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      company,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    Spacer(),
-                    Text(date, style: Theme.of(context).textTheme.bodyMedium),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Expanded(
-                  child: Text(
-                    content,
-                    style: Theme.of(context).textTheme.bodySmall,
-                    maxLines: 7,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          SizedBox(height: isWideScreen ? 0 : 24, width: isWideScreen ? 24 : 0),
+          isWideScreen ? Expanded(child: contentColumn) : contentColumn,
         ],
       ),
     );

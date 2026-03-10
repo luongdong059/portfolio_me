@@ -23,7 +23,9 @@ class Assets {
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesPersonal = 'assets/images/personal.JPG';
   static const String imagesPersonal1 = 'assets/images/personal1.JPG';
-  static const String imagesSmartinnotechLogo = 'assets/images/smartinnotech_logo.png';
+  static const String imagesSmartinnotechLogo =
+      'assets/images/smartinnotech_logo.png';
+  static const String imagesSouthTelecomLogo =
+      'assets/images/southtelecom_logo.png';
   static const String imagesWellcareLogo = 'assets/images/wellcare_logo.jpeg';
-
 }

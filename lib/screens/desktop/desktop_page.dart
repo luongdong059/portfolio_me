@@ -55,12 +55,15 @@ class _DesktopPageState extends State<DesktopPage> {
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.sizeOf(context).width;
+    double paddingHorizontal = screenWidth > 1200 ? 115 : screenWidth * 0.05;
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           controller: _scrollController,
           physics: const ClampingScrollPhysics(),
-          padding: const EdgeInsets.fromLTRB(115, 0, 115, 0),
+          padding: EdgeInsets.symmetric(horizontal: paddingHorizontal),
           child: Column(
             children: [
               DesktopNavBar(),
@@ -95,20 +98,29 @@ class Heros extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.sizeOf(context).width;
+    bool isWideScreen = screenWidth > 900;
+
     return Padding(
-      padding: const EdgeInsets.only(top: 96, bottom: 96),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      padding: const EdgeInsets.symmetric(vertical: 96),
+      child: Flex(
+        direction: isWideScreen ? Axis.horizontal : Axis.vertical,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: isWideScreen ? CrossAxisAlignment.start : CrossAxisAlignment.center,
         children: [
           Container(
-            width: MediaQuery.sizeOf(context).width * 60 / 100,
+            width: isWideScreen ? screenWidth * 0.5 : double.infinity,
+            margin: EdgeInsets.only(bottom: isWideScreen ? 0 : 48),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: isWideScreen ? CrossAxisAlignment.start : CrossAxisAlignment.center,
               children: [
-                Row(
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  alignment: isWideScreen ? WrapAlignment.start : WrapAlignment.center,
                   children: [
                     Text(
                       AppContents.hero01,
+                      textAlign: isWideScreen ? TextAlign.left : TextAlign.center,
                       style: Theme.of(context)
                           .textTheme
                           .displayMedium!
@@ -120,13 +132,18 @@ class Heros extends StatelessWidget {
                     ),
                   ],
                 ),
-                SelectableText(AppContents.about02,
-                    style: Theme.of(context).textTheme.bodyMedium),
+                SelectableText(
+                  AppContents.about02,
+                  textAlign: isWideScreen ? TextAlign.left : TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 48.0, bottom: 48.0),
+                  padding: const EdgeInsets.symmetric(vertical: 48.0),
                   child: Column(
+                    crossAxisAlignment: isWideScreen ? CrossAxisAlignment.start : CrossAxisAlignment.center,
                     children: [
                       Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
                             Assets.iconsAddress,
@@ -141,9 +158,10 @@ class Heros extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           const Padding(
-                            padding: EdgeInsets.only(left: 4.0, right: 4.0),
+                            padding: EdgeInsets.symmetric(horizontal: 4.0),
                             child: CircleAvatar(
                               radius: 8,
                               backgroundColor: AppColors.availableColor,
@@ -160,6 +178,7 @@ class Heros extends StatelessWidget {
                   ),
                 ),
                 Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     SocialItem(onTap: () {}, icon: Assets.iconsGithub),
                     SocialItem(onTap: () {}, icon: Assets.iconsTwitter),
@@ -169,19 +188,20 @@ class Heros extends StatelessWidget {
               ],
             ),
           ),
-          const Spacer(),
+          if (isWideScreen) const Spacer(),
           Container(
-              width: 300.w,
-              height: 400.w,
+              width: isWideScreen ? 300.w : 300,
+              height: isWideScreen ? 400.w : 400,
               color: AppColors.backgroundColor,
               child: Stack(
+                alignment: Alignment.center,
                 children: [
                   Positioned(
                     bottom: 0,
                     right: 0,
                     child: Container(
-                      width: 250.w,
-                      height: 350.w,
+                      width: isWideScreen ? 250.w : 250,
+                      height: isWideScreen ? 350.w : 350,
                       color: AppColors.tooltipColor,
                     ),
                   ),
@@ -193,7 +213,7 @@ class Heros extends StatelessWidget {
                       color: AppColors.backgroundColor,
                       child: Image.asset(
                         Assets.imagesPersonal,
-                        width: 250.w,
+                        width: isWideScreen ? 250.w : 250,
                       ),
                     ),
                   ),
@@ -212,29 +232,35 @@ class About extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.sizeOf(context).width;
+    bool isWideScreen = screenWidth > 900;
+
     return Padding(
-      padding: const EdgeInsets.only(top: 96, bottom: 96),
+      padding: const EdgeInsets.symmetric(vertical: 96),
       child: Column(
         children: [
           PageTag(
             title: AppContents.aboutMe,
             key: GlobalKeys.aboutKey,
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Flex(
+            direction: isWideScreen ? Axis.horizontal : Axis.vertical,
+            crossAxisAlignment: isWideScreen ? CrossAxisAlignment.start : CrossAxisAlignment.center,
             children: [
               Container(
-                  width: 400.w,
-                  height: 500.w,
+                  width: isWideScreen ? 400.w : 300,
+                  height: isWideScreen ? 500.w : 380,
+                  margin: EdgeInsets.only(bottom: isWideScreen ? 0 : 48),
                   color: AppColors.backgroundColor,
                   child: Stack(
+                    alignment: Alignment.center,
                     children: [
                       Positioned(
                         bottom: 0,
                         left: 0,
                         child: Container(
-                          width: 350.w,
-                          height: 450.w,
+                          width: isWideScreen ? 350.w : 260,
+                          height: isWideScreen ? 450.w : 350,
                           color: AppColors.tooltipColor,
                         ),
                       ),
@@ -246,20 +272,21 @@ class About extends StatelessWidget {
                           color: AppColors.backgroundColor,
                           child: Image.asset(
                             Assets.imagesPersonal1,
-                            width: 350.w,
+                            width: isWideScreen ? 350.w : 260,
                           ),
                         ),
                       ),
                     ],
                   )),
-              const Spacer(),
+              if (isWideScreen) const Spacer(),
               Container(
-                width: MediaQuery.sizeOf(context).width * 50 / 100,
+                width: isWideScreen ? screenWidth * 0.5 : double.infinity,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: isWideScreen ? CrossAxisAlignment.start : CrossAxisAlignment.center,
                   children: [
                     Text(
                       AppContents.aboutMe,
+                      textAlign: isWideScreen ? TextAlign.left : TextAlign.center,
                       style: Theme.of(context)
                           .textTheme
                           .displaySmall!
@@ -268,33 +295,51 @@ class About extends StatelessWidget {
                     const SizedBox(
                       height: 24,
                     ),
-                    SelectableText(AppContents.about01,
-                        style: Theme.of(context).textTheme.bodyMedium),
+                    SelectableText(
+                      AppContents.about01,
+                      textAlign: isWideScreen ? TextAlign.left : TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                     const SizedBox(
                       height: 16,
                     ),
-                    SelectableText(AppContents.about02,
-                        style: Theme.of(context).textTheme.bodyMedium),
+                    SelectableText(
+                      AppContents.about02,
+                      textAlign: isWideScreen ? TextAlign.left : TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                     const SizedBox(
                       height: 16,
                     ),
-                    SelectableText(AppContents.about03,
-                        style: Theme.of(context).textTheme.bodyMedium),
+                    SelectableText(
+                      AppContents.about03,
+                      textAlign: isWideScreen ? TextAlign.left : TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                     const SizedBox(
                       height: 16,
                     ),
-                    SelectableText(AppContents.about04,
-                        style: Theme.of(context).textTheme.bodyMedium),
+                    SelectableText(
+                      AppContents.about04,
+                      textAlign: isWideScreen ? TextAlign.left : TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                     const SizedBox(
                       height: 16,
                     ),
-                    SelectableText(AppContents.about05,
-                        style: Theme.of(context).textTheme.bodyMedium),
+                    SelectableText(
+                      AppContents.about05,
+                      textAlign: isWideScreen ? TextAlign.left : TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                     const SizedBox(
                       height: 16,
                     ),
-                    SelectableText(AppContents.about06,
-                        style: Theme.of(context).textTheme.bodyMedium)
+                    SelectableText(
+                      AppContents.about06,
+                      textAlign: isWideScreen ? TextAlign.left : TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    )
                   ],
                 ),
               ),
@@ -312,7 +357,7 @@ class Skill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 96, top: 96),
+      margin: const EdgeInsets.symmetric(vertical: 96),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -320,12 +365,16 @@ class Skill extends StatelessWidget {
             title: AppContents.skill,
           ),
           Text(AppContents.skill01,
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall),
           const Padding(
             padding: EdgeInsets.only(top: 48.0),
             child: Center(
                 child: Wrap(
+              alignment: WrapAlignment.center,
+              runAlignment: WrapAlignment.center,
               spacing: 32,
+              runSpacing: 32,
               children: [
                 SkillItem(
                   icon: Assets.iconsIconFigma,
@@ -354,16 +403,25 @@ class Experience extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 96, top: 96),
+      padding: const EdgeInsets.symmetric(vertical: 96),
       child: Column(
-        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PageTag(
             key: GlobalKeys.experienceKey,
             title: AppContents.experience,
           ),
           Text(AppContents.experienceDetail,
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall),
+          const SizedBox(
+            height: 48,
+          ),
+          const ExperienceItem(
+            image: Assets.imagesSouthTelecomLogo,
+            company: AppContents.experienceSouthTelecom,
+            date: AppContents.experienceSouthTelecomTime,
+            content: AppContents.experienceSouthTelecomDetail,
+          ),
           const SizedBox(
             height: 48,
           ),
@@ -394,7 +452,7 @@ class Contact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 96, top: 96),
+      padding: const EdgeInsets.symmetric(vertical: 96),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -403,16 +461,19 @@ class Contact extends StatelessWidget {
             title: AppContents.contact,
           ),
           Text(AppContents.contactDetail,
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Wrap(
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            runSpacing: 16,
             children: [
               Image.asset(
                 Assets.iconsIconEmail,
                 width: 24,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(AppContents.contactEmail,
                     style: Theme.of(context).textTheme.titleMedium),
               ),
@@ -422,7 +483,7 @@ class Contact extends StatelessWidget {
                     ClipboardData(text: AppContents.contactEmail),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Copied'),
                     ),
                   );
@@ -434,15 +495,18 @@ class Contact extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          const SizedBox(height: 16),
+          Wrap(
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            runSpacing: 16,
             children: [
               Image.asset(
                 Assets.iconsIconPhone,
                 width: 24,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(AppContents.contactPhoneNum,
                     style: Theme.of(context).textTheme.titleMedium),
               ),
@@ -452,7 +516,7 @@ class Contact extends StatelessWidget {
                     ClipboardData(text: AppContents.contactPhoneNum),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Copied'),
                     ),
                   );
@@ -465,11 +529,13 @@ class Contact extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text(AppContents.contact01,
+                textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodySmall),
           ),
           Row(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SocialItem(onTap: () {}, icon: Assets.iconsGithub),
