@@ -679,8 +679,9 @@ class _ProductCarouselDialogState extends State<ProductCarouselDialog> {
     return Dialog(
       backgroundColor: Colors.transparent,
       insetPadding: EdgeInsets.zero,
-      child: Stack(
-        alignment: Alignment.center,
+      child: SizedBox.expand(
+        child: Stack(
+          alignment: Alignment.center,
         children: [
           // Close button
           Positioned(
@@ -881,7 +882,8 @@ class _ProductCarouselDialogState extends State<ProductCarouselDialog> {
               ),
             ),
           ),
-        ],
+          ],
+        ),
       ),
     );
   }
