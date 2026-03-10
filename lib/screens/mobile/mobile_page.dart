@@ -184,28 +184,42 @@ class _MobilePageState extends State<MobilePage> {
               const MobileContact(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 48),
-                child: OutlinedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      barrierColor: Colors.black.withValues(alpha: 0.85),
-                      builder: (context) => const ProductCarouselDialog(),
-                    );
-                  },
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(
-                        color: AppColors.primaryColor, width: 2),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Color(0xFF0061FF),
+                        Color(0xFF60EFFF),
+                      ],
                     ),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Text(
-                    'View Product',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        barrierColor: Colors.black.withValues(alpha: 0.85),
+                        builder: (context) => const ProductCarouselDialog(),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(
+                      'View Product',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                    ),
                   ),
                 ),
               ),

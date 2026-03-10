@@ -18,6 +18,7 @@ class Assets {
   static const String iconsIconFigma = 'assets/icons/icon-figma.webp';
   static const String iconsIconFlutter = 'assets/icons/icon-flutter.png';
   static const String iconsIconPhone = 'assets/icons/icon-phone.png';
+  static const String iconsIconAI = 'assets/icons/icon-ai.png';
   static const String iconsSign = 'assets/icons/sign.png';
   static const String iconsTwitter = 'assets/icons/twitter.png';
   static const String imagesAcool1 = 'assets/images/acool_1.png';

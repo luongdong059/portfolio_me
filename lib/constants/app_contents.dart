@@ -11,13 +11,14 @@ class AppContents {
   static const String git = 'Git';
   static const String flutter = 'Flutter';
   static const String kotlin = 'Kotlin';
+  static const String aiAgent = 'AI Agent';
 
   // Hero
   static const String address = 'Tan Binh District, Ho Chi Minh City';
   static const String status = 'Available for new projects';
   static const String hero01 = 'Hi, I\'m Dong';
   static const String hero02 =
-      'I\'m a Flutter developer with a focus on creating (and occasionally designing) exceptional digital experiences that are fast, accessible, visually appealing, and responsive. Even though I have been creating mobile applications for over 2 years, I still love it as if it was something new.';
+      'I\'m a Flutter developer with a focus on creating (and occasionally designing) exceptional digital experiences that are fast, accessible, visually appealing, and responsive. Even though I have been creating mobile applications for over 4 years, I still love it as if it was something new.';
 
   // About
   static const String aboutMe = 'About Me';

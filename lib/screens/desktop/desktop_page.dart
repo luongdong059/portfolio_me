@@ -74,28 +74,42 @@ class _DesktopPageState extends State<DesktopPage> {
               Contact(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 96),
-                child: OutlinedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      barrierColor: Colors.black.withValues(alpha: 0.85),
-                      builder: (context) => const ProductCarouselDialog(),
-                    );
-                  },
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(
-                        color: AppColors.primaryColor, width: 2),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 32, vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Color(0xFF0061FF),
+                        Color(0xFF60EFFF),
+                      ],
                     ),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Text(
-                    'View Product',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        barrierColor: Colors.black.withValues(alpha: 0.85),
+                        builder: (context) => const ProductCarouselDialog(),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 32, vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(
+                      'View Product',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                    ),
                   ),
                 ),
               ),
@@ -165,7 +179,7 @@ class Heros extends StatelessWidget {
                   ],
                 ),
                 SelectableText(
-                  AppContents.about02,
+                  AppContents.hero02,
                   textAlign: isWideScreen ? TextAlign.left : TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
@@ -433,6 +447,10 @@ class Skill extends StatelessWidget {
                   icon: Assets.iconsIconFlutter,
                   title: AppContents.flutter,
                 ),
+                SkillItem(
+                  icon: Assets.iconsIconAI,
+                  title: AppContents.aiAgent,
+                ),
               ],
             )),
           ),
@@ -682,206 +700,206 @@ class _ProductCarouselDialogState extends State<ProductCarouselDialog> {
       child: SizedBox.expand(
         child: Stack(
           alignment: Alignment.center,
-        children: [
-          // Close button
-          Positioned(
-            top: 20,
-            right: 20,
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(24),
-                onTap: () => Navigator.pop(context),
-                child: Container(
-                  width: 48,
-                  height: 48,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.close,
-                    color: Colors.black87,
-                    size: 24,
+          children: [
+            // Close button
+            Positioned(
+              top: 20,
+              right: 20,
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(24),
+                  onTap: () => Navigator.pop(context),
+                  child: Container(
+                    width: 48,
+                    height: 48,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.close,
+                      color: Colors.black87,
+                      size: 24,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
 
-          // Carousel content with tabs
-          SizedBox(
-            width: carouselWidth,
-            height: carouselHeight,
-            child: Column(
-              children: [
-                // Tab bar
-                Container(
-                  margin: const EdgeInsets.only(bottom: 24),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  padding: const EdgeInsets.all(4),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: List.generate(
-                      _tabTitles.length,
-                      (index) => GestureDetector(
-                        onTap: () => _switchTab(index),
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 250),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 24,
-                            vertical: 12,
-                          ),
-                          decoration: BoxDecoration(
-                            color: _selectedTab == index
-                                ? Colors.white
-                                : Colors.transparent,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Text(
-                            _tabTitles[index],
-                            style: TextStyle(
+            // Carousel content with tabs
+            SizedBox(
+              width: carouselWidth,
+              height: carouselHeight,
+              child: Column(
+                children: [
+                  // Tab bar
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 24),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.all(4),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: List.generate(
+                        _tabTitles.length,
+                        (index) => GestureDetector(
+                          onTap: () => _switchTab(index),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 250),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 24,
+                              vertical: 12,
+                            ),
+                            decoration: BoxDecoration(
                               color: _selectedTab == index
-                                  ? Colors.black87
-                                  : Colors.white70,
-                              fontWeight: _selectedTab == index
-                                  ? FontWeight.w600
-                                  : FontWeight.normal,
-                              fontSize: 14,
+                                  ? Colors.white
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              _tabTitles[index],
+                              style: TextStyle(
+                                color: _selectedTab == index
+                                    ? Colors.black87
+                                    : Colors.white70,
+                                fontWeight: _selectedTab == index
+                                    ? FontWeight.w600
+                                    : FontWeight.normal,
+                                fontSize: 14,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
 
-                // Image carousel
-                Expanded(
-                  child: PageView.builder(
-                    key: ValueKey(_selectedTab),
-                    controller: _pageController,
-                    itemCount: _currentImages.length,
-                    onPageChanged: (index) {
-                      setState(() {
-                        _currentPage = index;
-                      });
-                    },
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            _currentImages[index],
-                            fit: BoxFit.contain,
+                  // Image carousel
+                  Expanded(
+                    child: PageView.builder(
+                      key: ValueKey(_selectedTab),
+                      controller: _pageController,
+                      itemCount: _currentImages.length,
+                      onPageChanged: (index) {
+                        setState(() {
+                          _currentPage = index;
+                        });
+                      },
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              _currentImages[index],
+                              fit: BoxFit.contain,
+                            ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
-                ),
-                const SizedBox(height: 24),
-                // Page indicator dots
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    _currentImages.length,
-                    (index) => AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      margin: const EdgeInsets.symmetric(horizontal: 4),
-                      width: _currentPage == index ? 24 : 8,
-                      height: 8,
+                  const SizedBox(height: 24),
+                  // Page indicator dots
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                      _currentImages.length,
+                      (index) => AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        margin: const EdgeInsets.symmetric(horizontal: 4),
+                        width: _currentPage == index ? 24 : 8,
+                        height: 8,
+                        decoration: BoxDecoration(
+                          color: _currentPage == index
+                              ? Colors.white
+                              : Colors.white.withValues(alpha: 0.4),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Previous button
+            Positioned(
+              left: screenWidth > 900 ? screenWidth * 0.15 : 12,
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(28),
+                  onTap: _currentPage > 0 ? _goToPrevious : null,
+                  child: AnimatedOpacity(
+                    opacity: _currentPage > 0 ? 1.0 : 0.3,
+                    duration: const Duration(milliseconds: 200),
+                    child: Container(
+                      width: 56,
+                      height: 56,
                       decoration: BoxDecoration(
-                        color: _currentPage == index
-                            ? Colors.white
-                            : Colors.white.withValues(alpha: 0.4),
-                        borderRadius: BorderRadius.circular(4),
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.2),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.chevron_left,
+                        color: Colors.black87,
+                        size: 32,
                       ),
                     ),
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
 
-          // Previous button
-          Positioned(
-            left: screenWidth > 900 ? screenWidth * 0.15 : 12,
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(28),
-                onTap: _currentPage > 0 ? _goToPrevious : null,
-                child: AnimatedOpacity(
-                  opacity: _currentPage > 0 ? 1.0 : 0.3,
-                  duration: const Duration(milliseconds: 200),
-                  child: Container(
-                    width: 56,
-                    height: 56,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.2),
-                          blurRadius: 8,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.chevron_left,
-                      color: Colors.black87,
-                      size: 32,
+            // Next button
+            Positioned(
+              right: screenWidth > 900 ? screenWidth * 0.15 : 12,
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(28),
+                  onTap: _currentPage < _currentImages.length - 1
+                      ? _goToNext
+                      : null,
+                  child: AnimatedOpacity(
+                    opacity:
+                        _currentPage < _currentImages.length - 1 ? 1.0 : 0.3,
+                    duration: const Duration(milliseconds: 200),
+                    child: Container(
+                      width: 56,
+                      height: 56,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.2),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.chevron_right,
+                        color: Colors.black87,
+                        size: 32,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-
-          // Next button
-          Positioned(
-            right: screenWidth > 900 ? screenWidth * 0.15 : 12,
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(28),
-                onTap: _currentPage < _currentImages.length - 1
-                    ? _goToNext
-                    : null,
-                child: AnimatedOpacity(
-                  opacity:
-                      _currentPage < _currentImages.length - 1 ? 1.0 : 0.3,
-                  duration: const Duration(milliseconds: 200),
-                  child: Container(
-                    width: 56,
-                    height: 56,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.2),
-                          blurRadius: 8,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.chevron_right,
-                      color: Colors.black87,
-                      size: 32,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
           ],
         ),
       ),
